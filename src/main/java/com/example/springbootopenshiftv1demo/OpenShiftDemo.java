@@ -12,4 +12,9 @@ public class OpenShiftDemo {
   public String test() {
 	  return "Welcome to Spring Boot Openshift app from Version 1";
   }
+	
+  @GetMapping("/v1/{input}")
+  public String test(@PathVariable String input) {
+	  return "Welcome " + input + " to Spring Boot Openshift app from Version 1";
+  }
 }
