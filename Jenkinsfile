@@ -10,16 +10,20 @@ pipeline {
             sh "mvn package"
             //sh "mvn test"
             sh "mvn clean install"
-        }
-      }
-       stage ('Deploy') {
-        steps {
-             sh "chmod +x mvnw"
-            
-            withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-            sh 'nohup ./mvnw spring-boot:run -Dserver.port=8989 &'
-            }
-      }
+           post{
+           success {
+            archiveArtifacts 'target/*.jar';
+           }
+       }
     }
+      }
+    
+     stage('NEXUS') {
+       steps{
+           echo "Deploying the project";
+           sh 'mvn deploy:deploy-file -DgroupId=**** -DartifactId=**** -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/****-1.0.jar ';
+       }
+    }
+       
    }
 }
