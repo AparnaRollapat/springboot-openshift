@@ -14,10 +14,8 @@ pipeline {
       }
        stage ('Deploy') {
         steps {
-             sh 'chmod +r /home/tes/pom.xml'
-             sh 'sh 'nohup ./mvnw spring-boot:run -Dserver.port=8989 &'
-    
-       }
+             sh 'chmod +x mvnw ./mvnw spring-boot:run -Dserver.port=8989'
       }
     }
+   }
 }
