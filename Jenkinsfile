@@ -1,22 +1,21 @@
 pipeline {
     agent any
-    tools {
-        jdk 'jdk'
-        maven '3.8.3'
-    }
     stages {
-        stage("build project") {
+        stage('Versiyon'){
+            steps{
+                echo "Maven Integration Version"
+                sh "mvn --version"
+                echo "Java Version"
+                sh "java --version"
+            }
+        }
+        stage('Build') {
             steps {
-               // git 'https://github.com/denizturkmen/SpringBootMysqlCrud.git'
-                echo "Java VERSION"
-                sh 'java -version'
-                echo "Maven VERSION"
-                sh 'mvn -version'
-                echo 'building project...'
-                sh "mvn compile"
-                sh "mvn package"
-                //sh "mvn test"
-                sh "mvn clean install"
+                // Get some code from a GitHub repository
+                git 'https://github.com/denizturkmen/SpringBootMysqlCrud.git'
+                sh 'mvn clean'
+                sh 'mvn compile'
+                sh 'mvn package'
             }
         }
     }
