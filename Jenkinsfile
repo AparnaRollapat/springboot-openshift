@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven '3.8.3'
+       maven 'M3'
     }
     stages {
         stage('Versiyon'){
