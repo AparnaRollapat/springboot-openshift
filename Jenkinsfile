@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    tools {
-       maven 'M3'
-    }
+   
     stages {
         stage('Versiyon'){
             steps{
-                echo "Maven Integration Version"
+                shexport MAVEN_HOME=/opt/maven
+                sh export PATH=$PATH:$MAVEN_HOME/bin
+                sh echo "Maven Integration Version"
                 sh "mvn --version"
                 echo "Java Version"
                 sh "java --version"
