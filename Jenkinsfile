@@ -1,6 +1,14 @@
-pipeline{
-  stage('com'){
-    def mvnHome = tool name: 'Apache Maven 3.6.0', type: 'maven'
-    sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
-  }
+pipeline {
+    agent any
+    tools { 
+      maven 'Maven'
+    }
+    stages {
+      stage ('Build') {
+        steps {
+          sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
+        }
+      }
+
+    }
 }
