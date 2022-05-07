@@ -6,10 +6,9 @@ pipeline {
     stages {
       stage ('Build') {
         steps {
-            sh "mvn compile"
-            sh "mvn package"
-            //sh "mvn test"
-            sh "mvn clean install"
+            sh "mvn compile dependency:resolve"
+            sh "mvn dependency:resolve-plugins"
+            sh "mvn clean package"
         }
            post{
            success {
