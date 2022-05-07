@@ -10,13 +10,14 @@ pipeline {
             sh "mvn package"
             //sh "mvn test"
             sh "mvn clean install"
+        }
            post{
            success {
             archiveArtifacts 'target/*.jar';
            }
        }
     }
-      }
+      
     
      stage('NEXUS') {
        steps{
