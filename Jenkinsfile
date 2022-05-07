@@ -1,24 +1,21 @@
 pipeline {
     agent any
-   
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk8' 
+    }
     stages {
-        stage('Versiyon'){
-            steps{
-                shexport MAVEN_HOME=/opt/maven
-                sh export PATH=$PATH:$MAVEN_HOME/bin
-                sh echo "Maven Integration Version"
-                sh "mvn --version"
-                echo "Java Version"
-                sh "java --version"
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
             }
         }
-        stage('Build') {
+
+        stage ('Build') {
             steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/denizturkmen/SpringBootMysqlCrud.git'
-                sh 'mvn clean'
-                sh 'mvn compile'
-                sh 'mvn package'
+                echo 'This is a minimal pipeline.'
             }
         }
     }
