@@ -22,7 +22,7 @@ pipeline {
      stage('NEXUS') {
        steps{
            echo "Deploying the project";
-           sh 'mvn deploy:deploy-file -DgroupId=**** -DartifactId=**** -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/springboot-openshift-v1demo-0.0.1-SNAPSHOT.jar ';
+           sh 'mvn deploy:deploy-file -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/springboot-openshift-v1demo-0.0.1-SNAPSHOT.jar ';
        }
     }
        
