@@ -6,7 +6,10 @@ pipeline {
     stages {
       stage ('Build') {
         steps {
-          sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
+            sh "mvn compile"
+            sh "mvn package"
+            //sh "mvn test"
+            sh "mvn clean install"
         }
       }
 
