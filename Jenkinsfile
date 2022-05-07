@@ -12,6 +12,14 @@ pipeline {
             sh "mvn clean install"
         }
       }
-
     }
+    stages {
+      stage ('Deploy') {
+        steps {
+             sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid || kill -KILL \$pid"
+             sh 'nohup ./mvnw spring-boot:run -Dserver.port=8989 &'
+       }
+      }
+    }
+    
 }
