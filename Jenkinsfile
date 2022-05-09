@@ -21,7 +21,8 @@ pipeline {
      stage('NEXUS') {
        steps{
            echo "Deploying the project";
-           sh 'mvn deploy:deploy-file -DgroupId=com.example -DartifactId=springboot-openshift-v1demo -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/springboot-openshift-v1demo-1.0.jar ';
+           sh 'nohup java -jar springboot-openshift-v1demo-1.0.jar >> app.log &'
+           //sh 'mvn deploy:deploy-file -DgroupId=com.example -DartifactId=springboot-openshift-v1demo -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/springboot-openshift-v1demo-1.0.jar ';
        }
     }
        
