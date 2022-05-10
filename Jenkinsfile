@@ -18,7 +18,7 @@ pipeline {
     }
       
     
-     stage('NEXUS') {
+     stage('Deploy') {
        steps{
            echo "Deploying the project";
            sh 'nohup java -jar target/*.jar >> app.log &'
